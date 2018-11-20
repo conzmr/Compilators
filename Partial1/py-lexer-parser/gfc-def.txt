@@ -1,0 +1,91 @@
+G = { N, T, P, S}
+
+donde:
+
+ T = {var, “,” , “;” , : , etc……}
+
+ N = { <declaración>, <lista –de-dcls>, <unaDeclaración>, <lista-de-ident>,
+ <tipo>, <ident>}
+
+ P = {
+        <fuente> ::= [<bloque-funciones>] <principal>
+
+        <bloque-funciones> ::= { <funcion> } 
+
+        <principal> ::= principal '(' ')' '{' [<declaraciones>] [<sentencias>] '}'
+
+        <funcion> ::= <tipo-dato> <id> '(' [ <argumentos> ] ')'
+                        '{' [<declaraciones>] [<sentencias>] <regresa> '}'
+
+        <declaraciones> ::= <declaracion> { <declaracion> }
+
+        <sentencias> ::= <sentencia> { <sentencia> }
+
+        <argumentos> ::= <argumento> { ',' <argumento> }
+
+        <argumento> ::= <tipo-dato> <identificador>
+
+        <tipo-dato> ::= logico | real | entero
+
+        <id> ::= <letra-minuscula>{ <letra-minuscula> | <letra-mayuscula> | <digito> }
+
+        <regresa> ::= regresa <id> ;
+
+        <declaracion> ::= <data-type> <id> ;
+
+        <sentencia> ::= <si> | <mientras> | <asignacion>
+
+        <si> ::= si '(' <id> ')' '{' <sentencias> '}'
+
+        <mientras> ::= mientras '(' <id> ')' '{' <sentencias> '}'
+
+        <asignacion> ::= <id> = <expresion> | <id> = <llamada-funcion>
+
+        <expresiones> ::= <expresion> { <expresion> };
+
+        <expresion> ::= <aritmetica> | <logica> | <relacional> | ! <id>
+
+        <llamada_funcion> ::= <id> '(' { <argumentos> } ')'
+
+        <aritmetica> ::= '(' <aritmetica> ')' | <valor_aritmetico> | <aritmetica> [<operador_aritmetico> <aritmetica>]
+
+        <operador_aritmetico> ::= '*' | '+' | '/' | '^' | '-'
+
+        <valor_aritmetico> ::= <id> | <entero> | <real> | <llamada_funcion>
+
+        <llamada_funcion> ::= <id> '(' [<argumentos_funcion>] ')'
+
+        <argumentos_funcion> ::= <id> [',' <argumentos_funcion>]
+
+        <logica> ::= '(' <logica> ')' | <valor_logico> | <logica> [<operador_logico> <logica>]
+
+        <operador_logico> ::= '|' | '&'
+
+        <valor_logico> ::= <id> | falso | verdadero | <llamada_funcion>
+
+        <relacional> ::= <valor_aritmetico> <operador_relacional> <valor_aritmetico>
+
+        <operador_relacional> ::= '<' | '>' | '=='
+
+        <aritmetica> ::= '(' <aritmetica> ')' | <valor_aritmetico> | <aritmetica> [<operador_aritmetico> <aritmetica>]
+
+        <operador_aritmetico> ::= '*' | '+' | '/' | '^' | '-'
+
+        <logica> ::= '(' <logica> ')' | <valor_logico> | <logica> [<operador_logico> <logica>]
+
+        <entero> :== { <digito> }
+
+        <real> :== <entero> '.' <entero>
+
+        <digito> ::= 0|1|2|3|4|5|6|7|8|9
+
+        <letra-minuscula> ::= a|b|c……………|x|y|z
+
+        <letra-mayuscula> ::= A|B|C……………|X|Y|Z
+
+        <operador_relacional> ::= '<' | '>' | '=='
+
+        <operador_logico> ::= '|' | '&'
+}
+
+S = <fuente>

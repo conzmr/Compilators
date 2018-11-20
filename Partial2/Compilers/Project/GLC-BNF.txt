@@ -1,0 +1,49 @@
+<source> ::= [<function-blocks] <main>
+
+<function-blocks> ::= {[<function>]}
+
+<main> ::= principal '(' ')' '{'[<declarations>]* [<operations>]* '}'
+
+<declarations> ::= <data-type> id;
+
+<data-type> ::= logico | entero | real
+
+<operations> ::= <expressions> | <if> | <while>
+
+<expressions> ::= id = <expression>;
+
+<expression> ::= <arithmetic> | <logical> | <relational> | <assignation> | ! id | | ! <call-function> 
+
+<arithmetic> ::= <arithmetic> | '(' <arithmetic> ')' [<arithmetic>]* | <a-values> [<a-operators> <a-values>]*
+
+<a-values> ::= int | float | id | <call-function>
+
+<a-operators> ::= + | - | / | * | ^
+
+<logical> ::= <logical> | '(' <logical> ')' [<logical>]* | <l-values> [<l-operators> <l-values>]*
+
+<l-values> ::= boolean | id | <call-function>
+
+<l-operators> ::= & | '|'
+
+<relational> ::= <r-values> <r-operators> <r-values>
+
+<r-values> ::= int | float | id | <call-function>
+
+<a-operators> ::= < | > | == 
+
+<assignation> ::= id | <call-function>
+
+<call-function> ::= id '('')'
+
+<if> ::= si '(' id ')' { [<operations>]* }
+
+<while> ::= mientras '(' id ')' { [<operations>]* }
+
+<function> ::= <data-type> id '(' [<parameters>] ')' '{' [<declarations>]* [<operations>]* <return> '}'
+
+<parameters> ::= <parameter> [',' <parameter>]
+
+<parameter> ::= <data-type> id
+
+<return> ::= regresa id; 

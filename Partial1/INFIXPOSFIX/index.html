@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+Infix Operation: <input type="text" ng-model="infixString"><br>
+<br>
+<button ng-click="setInfix()">Set new operation</button><br>
+<button ng-click="infixPosfix()">Do InfixPosfix</button><br>
+
+  <p>Infix operation: {{infixOperation}}</p>
+  <p>Stack: {{stack}}</p>
+  <p>Posfix operation: {{posfixOperation}}</p>
+
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+
+  $scope.infixString = "";
+  $scope.infixOperation = $scope.infixString.split(" ");
+  $scope.posfixOperation = [];
+  $scope.stack = [];
+
+
+  $scope.setInfix = function(){
+  	$scope.infixOperation = $scope.infixString.split(" ");
+    $scope.posfixOperation = [];
+    $scope.stack = [];
+  }
+
+
+
+  const operators = {
+    '+': 1,
+    '-': 1,
+    '*': 2,
+    '/': 2,
+    '^': 3
+  }
+
+  function isNumber(str){
+  return !/\D/.test(str);
+}
+
+  $scope.infixPosfix = function(){
+    if($scope.infixOperation.length > 0){
+      var item = $scope.infixOperation.shift();
+      if(isNumber(item)){
+        $scope.posfixOperation.push(item);
+      } else {
+        if($scope.stack.length == 0){
+          $scope.stack.push(item);
+        }
+        else{
+          var top = $scope.stack[$scope.stack.length-1];
+          console.log(top);
+          if(operators[item] == operators[top]){
+            $scope.posfixOperation.push($scope.stack.pop());
+            $scope.stack.push(item);
+          }
+          else if(operators[top] < operators[item]){
+            console.log(item);
+            $scope.stack.push(item);
+          }
+          else if(operators[top] > operators[item]){
+            while($scope.stack.length>0 && operators[$scope.stack[$scope.stack.length-1]] >= operators[item] ){
+              $scope.posfixOperation.push($scope.stack.pop());
+            }
+            $scope.stack.push(item);
+          }
+        }
+      }
+    }else{
+      while($scope.stack.length > 0){
+        $scope.posfixOperation.push($scope.stack.pop());
+      }
+    }
+  }
+
+});
+</script>
+
+</body>
+</html>

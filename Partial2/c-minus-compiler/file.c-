@@ -1,0 +1,18 @@
+int fact( int x )
+{ if (x > 1)
+      return x * fact(x-1) * fact(x-1);
+    else
+      return 1;
+}
+
+void fact( int x )
+{
+  x + 1;
+}
+
+void main (void)
+{
+    int x;
+    x = read();
+    if( x > 0 ) while( fact(x) );
+}
